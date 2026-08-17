@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const { getValidCoupons, validateCoupon } = require('../controllers/couponController');
+const { protect } = require('../middleware/authMiddleware');
+
+router.route('/')
+  .get(protect, getValidCoupons);
+
+router.route('/validate')
+  .post(protect, validateCoupon);
+
+module.exports = router;
